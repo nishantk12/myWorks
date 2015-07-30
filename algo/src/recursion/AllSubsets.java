@@ -2,7 +2,7 @@ package recursion;
 
 public class AllSubsets {
   public static void main(String[] args) {
-	int[] nums = {0,1,2,3,4};
+	int[] nums = {0,1,2};
 	printAllSubsets(0,nums,"","");
 }
 

@@ -6,31 +6,26 @@ public class MergeSort {
 	static int numsG[] = {4,0,6,2,8,5,4};
 	public static void main(String[] args) {
 		
-		int numstemp[] = numsG;
-		mergeSort(numstemp,0,numsG.length-1);
+		mergeSort(0,numsG.length-1);
 		System.out.println(Arrays.toString(numsG));
 	}
 
-	private static void mergeSort(int[] nums, int start, int end) {
-		// TODO Auto-generated method stub
+	private static void mergeSort( int start, int end) {
 		if(start<end){
 			int center = (start + end)/2;
-			mergeSort(nums,start,center);
-			mergeSort(nums,center+1,end);
-			merge(nums,start,center,end);
+			mergeSort(start,center);
+			mergeSort(center+1,end);
+			merge(numsG,start,center,end);
 		}
-		
-		
 	}
 
 	private static void merge(int[] nums, int start, int center, int end) {
-		System.out.println("start " + start + " center " + center +  " end " + end);
-		System.out.println(Arrays.toString(nums));
+		//System.out.println(Arrays.toString(nums));
 		int oneTemp = start;
 		int twoTemp = center+1;
 		int pointer = start;
 		int count = 0;
-		int[] numstemp = nums;
+		int[] numstemp = nums.clone();
 		
 		while(count<=(end-start)+1){
 			if(oneTemp<=center && twoTemp <= end){
@@ -56,6 +51,7 @@ public class MergeSort {
 			pointer++;
 			count++;
 		}
+		
 		
 		numsG = numstemp;
 	}

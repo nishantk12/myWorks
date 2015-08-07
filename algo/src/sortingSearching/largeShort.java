@@ -13,12 +13,12 @@ public class largeShort {
 		arr1[0] = 10;arr1[1] = 21;arr1[2] = 80;arr1[3] = 100;
 		arr2[0] = 27;arr2[1] = 30;arr2[2] = 85;
 		
-		int[] sortedArray = mergeSortedArrays(arr1,arr2);
+		//int[] sortedArray = mergeSortedArrays(arr1,arr2);
 		
+		//System.out.println(Arrays.toString(sortedArray));
+		
+		int[] sortedArray = insertSortedArray(arr1,arr2);
 		System.out.println(Arrays.toString(sortedArray));
-		
-		sortedArray = insertSortedArray(arr1,arr2);
-		
 	}
 
 	//when you have lot of space and working area is not a problem
@@ -63,13 +63,34 @@ public class largeShort {
 		//int count2 = 0;
 		while(count < arr2.length){
 			if(arr2[count] < arr1[count1]){
-				//shift by 1
-				//allocate arr2[count] to 
-				//increase counts by 1
-			}else{
-				//increase counts by 1
+				arr1 = shiftArrByOne(arr1,count1);
+				arr1[count1] = arr2[count];
+				count++;
 			}
+			count1++;
+			if(arr1[count1] == -999)
+				break;
+			
 		}
-		return null;
+		
+		while(count<arr2.length){
+			arr1[count1] = arr2[count];
+			count1++;count++;
+		}
+		return arr1;
+	}
+
+	private static int[] shiftArrByOne(int[] arr1, int count1) {
+		int count = count1;
+		while(arr1[count] != -999){
+			count++;
+		}
+		
+		while(count != count1){
+			arr1[count] = arr1[count-1];
+			count--;
+		}
+		
+		return arr1;
 	}
 }

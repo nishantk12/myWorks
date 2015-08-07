@@ -17,8 +17,12 @@ public class largeShort {
 		
 		System.out.println(Arrays.toString(sortedArray));
 		
+		sortedArray = insertSortedArray(arr1,arr2);
+		
 	}
 
+	//when you have lot of space and working area is not a problem
+	
 	private static int[] mergeSortedArrays(int[] arr1, int[] arr2) {
 		int sortedArray[] = arr1.clone();
 		
@@ -48,5 +52,24 @@ public class largeShort {
 		
 		
 		return sortedArray;
+	}
+	
+	
+	//when you dont have space but you can compromise in the area of CPU
+	
+	private static int[] insertSortedArray(int[] arr1, int[] arr2) {
+		int count = 0;
+		int count1 = 0;
+		//int count2 = 0;
+		while(count < arr2.length){
+			if(arr2[count] < arr1[count1]){
+				//shift by 1
+				//allocate arr2[count] to 
+				//increase counts by 1
+			}else{
+				//increase counts by 1
+			}
+		}
+		return null;
 	}
 }

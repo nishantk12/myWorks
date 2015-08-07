@@ -16,7 +16,7 @@ public class anagramsTogether {
 			System.out.println("not anagrams");
 		}
 		
-		String[] strArray = {"army","mary","sasa","asas"};
+		String[] strArray = {"sasa","army","mary","asas"};
 		
 		String[] SortedArray = sortAsPerAnagrams(strArray);
 		System.out.println(Arrays.toString(SortedArray));
@@ -31,11 +31,14 @@ public class anagramsTogether {
 			anagramClusters = addToList(anagramClusters,strArray[i]);
 		}
 		
-		while(anagramClusters.get(count) != null){
+		while(count<anagramClusters.size()){
 			Collections.sort(anagramClusters.get(count));
 			finalList.addAll(anagramClusters.get(count));
+			count++;
 		}
-		sortedArray = (String[]) finalList.toArray();
+		System.out.println(finalList.size());
+		//sortedArray = (String[]) finalList.toArray();
+		finalList.toArray(sortedArray);
 		return sortedArray;
 	}
 
@@ -43,18 +46,24 @@ public class anagramsTogether {
 			(List<List<String>> anagramClusters,String string) {
 		int count = 0; 
 		int added = 0;
-		while(anagramClusters.get(count) != null){
-			List<String> cluster = anagramClusters.get(count);
-			if(checkIfAnagrams(string, cluster.get(0))){
-				cluster.add(string);
-				added = 1;
-			}
-			count++;
-		}
-		if(added == 0){
+		if(anagramClusters.isEmpty()){
 			List<String> cluster = new ArrayList<String>();
 			cluster.add(string);
 			anagramClusters.add(cluster);
+		}else{
+			while(count<anagramClusters.size()){
+				List<String> cluster = anagramClusters.get(count);
+				if(checkIfAnagrams(string, cluster.get(0))){
+					cluster.add(string);
+					added = 1;
+				}
+				count++;
+			}
+			if(added == 0){
+				List<String> cluster = new ArrayList<String>();
+				cluster.add(string);
+				anagramClusters.add(cluster);
+			}
 		}
 		return anagramClusters;
 	}

@@ -1,6 +1,8 @@
 package sortingSearching;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class anagramsTogether {
@@ -17,17 +19,23 @@ public class anagramsTogether {
 		String[] strArray = {"army","mary","sasa","asas"};
 		
 		String[] SortedArray = sortAsPerAnagrams(strArray);
+		System.out.println(Arrays.toString(SortedArray));
 	}
 
 	private static String[] sortAsPerAnagrams(String[] strArray) {
 		String[] sortedArray = new String[strArray.length];
 		List<List<String>> anagramClusters = new ArrayList<List<String>>();
+		List<String> finalList = new ArrayList<String>();
 		int count = 0;
 		for(int i=0;i<sortedArray.length;i++){
 			anagramClusters = addToList(anagramClusters,strArray[i]);
 		}
 		
-		while(anagramClusters.get(count) != null)
+		while(anagramClusters.get(count) != null){
+			Collections.sort(anagramClusters.get(count));
+			finalList.addAll(anagramClusters.get(count));
+		}
+		sortedArray = (String[]) finalList.toArray();
 		return sortedArray;
 	}
 

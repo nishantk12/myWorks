@@ -13,11 +13,11 @@ public class largeShort {
 		arr1[0] = 10;arr1[1] = 21;arr1[2] = 80;arr1[3] = 100;
 		arr2[0] = 27;arr2[1] = 30;arr2[2] = 85;
 		
-		//int[] sortedArray = mergeSortedArrays(arr1,arr2);
+		int[] sortedArray = mergeSortedArrays(arr1,arr2);
 		
-		//System.out.println(Arrays.toString(sortedArray));
+		System.out.println(Arrays.toString(sortedArray));
 		
-		int[] sortedArray = insertSortedArray(arr1,arr2);
+		sortedArray = insertSortedArray(arr1,arr2);
 		System.out.println(Arrays.toString(sortedArray));
 	}
 

@@ -5,7 +5,7 @@ public class ClimbStairs {
 	public static void main(String[] args) {
 		int numberOfstairs = 44;
 		memo = new int[numberOfstairs+1];
-		//initializeMemo();
+		//initializeMemo();    //Commenting this line, made this solution to be 99 %ile from 67%ile
 		int numberOfWays = findNumberOfWays(numberOfstairs);
 		System.out.println(numberOfWays);
 	}
@@ -17,7 +17,7 @@ public class ClimbStairs {
 	}
 
 	private static int findNumberOfWays(int numberOfstairs) {
-		if(memo[numberOfstairs] == -1){
+		if(memo[numberOfstairs] == 0){
 			if(numberOfstairs <= 1)
 				memo[numberOfstairs] = 1;
 			else

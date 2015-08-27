@@ -10,6 +10,7 @@ public class ClimbStairs {
 		System.out.println(numberOfWays);
 	}
 
+	@SuppressWarnings("unused")
 	private static void initializeMemo() {
 		for(int i=0;i<memo.length;i++){
 			memo[i] = -1;

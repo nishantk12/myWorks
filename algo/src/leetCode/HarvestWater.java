@@ -2,7 +2,7 @@ package leetCode;
 
 public class HarvestWater {
 	public static void main(String[] args) {
-		int[] nums = {1,4,0,2,3};
+		int[] nums = {0,1,0,2};
 		int amountOfWater =  findWaterAmount(nums);
 		System.out.println(amountOfWater);
 	}
@@ -29,18 +29,18 @@ public class HarvestWater {
 				}
 				j++;
 			}
-			if(j == nums.length){
+			if(j >= nums.length){
 				secondPillar = highestPillarFound;
 				j = i+1;
-				while(j != indexOfHighestPillarFound){
+				while(j < nums.length && j != indexOfHighestPillarFound){
 					totalAmount = totalAmount + (nums[j] - highestPillarFound);
 					j++;
 				}
 				i = indexOfHighestPillarFound + 1;
 			}else{
 				j = i+1;
-				while(j!=indexOfSecondPillar){
-					totalAmount = totalAmount + nums[j] - secondPillar;
+				while(j < nums.length && j!=indexOfSecondPillar){
+					totalAmount = totalAmount + (nums[j] - secondPillar);
 					j++;
 				}
 				i = indexOfSecondPillar +1;

@@ -4,19 +4,38 @@ import java.util.Arrays;
 
 public class MaximumProductSubarray {
 	public static void main(String[] args) {
-		int[] nums = {-2,3,-4};
+		int[] nums = {-3,0,1,-2};
 		int max = findMaxProSub(nums);
 		System.out.println(max);
 	}
 
 	private static int findMaxProSub(int[] nums) {
-		int[] bestPro = new int[nums.length];
-		int max = nums[0];
-		for(int i=0;i<nums.length;i++){
-			bestPro[i] = findProductByIndex(nums,i);
-			if(bestPro[i] > max)
-				max = bestPro[i];
+		int[] bestProMax = new int[nums.length];
+		int[] bestProMin = new int[nums.length];
+		//int[] bestPro = new int[nums.length];
+		int max = nums[nums.length - 1];
+		bestProMax[nums.length-1] = nums[nums.length - 1];
+		bestProMin[nums.length-1] = nums[nums.length - 1];
+		for(int i=nums.length-2;i>=0;i--){
+			if(bestProMax[i+1]*nums[i] > bestProMin[i+1]*nums[i]){
+				bestProMax[i] = bestProMax[i+1]*nums[i];
+				bestProMin[i] = bestProMin[i+1]*nums[i];
+			}else{
+				bestProMax[i] = bestProMin[i+1]*nums[i];
+				bestProMin[i] = bestProMax[i+1]*nums[i];
+			}
+			if(nums[i] > bestProMax[i]){
+				bestProMax[i] = nums[i];
+			}
+			if(nums[i] < bestProMin[i]){
+				bestProMin[i] = nums[i];
+			}
+			if(max < bestProMax[i]){
+				max = bestProMax[i];
+			}
 		}
+		
+		
 		return max;
 	}
 	
@@ -43,3 +62,9 @@ public class MaximumProductSubarray {
 		return max;
 	}
 }
+
+/*for(int i=0;i<nums.length;i++){
+bestPro[i] = findProductByIndex(nums,i);
+if(bestPro[i] > max)
+	max = bestPro[i];
+}*/

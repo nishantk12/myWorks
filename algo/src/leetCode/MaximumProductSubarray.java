@@ -1,7 +1,5 @@
 package leetCode;
 
-import java.util.Arrays;
-
 public class MaximumProductSubarray {
 	public static void main(String[] args) {
 		int[] nums = {-3,0,1,-2};
@@ -39,6 +37,7 @@ public class MaximumProductSubarray {
 		return max;
 	}
 	
+	@SuppressWarnings("unused")
 	private static int findProductByIndex(int[] nums, int j) {
 		int product = nums[j];
 		int maxProduct = product;
@@ -54,6 +53,7 @@ public class MaximumProductSubarray {
 	}
 
 	
+	@SuppressWarnings("unused")
 	private static int findMaxOfArray(int[] bestSum) {
 		int max = bestSum[0];
 		for(int i=1;i<bestSum.length;i++){

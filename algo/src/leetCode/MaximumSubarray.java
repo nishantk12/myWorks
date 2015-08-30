@@ -33,6 +33,7 @@ public class MaximumSubarray {
 
 
 
+	@SuppressWarnings("unused")
 	private static int findMaxForIndex(int[] nums, int i,int sum) {
 		maxSumForIndex = sum;
 		for(int j=i;j<nums.length;j++){

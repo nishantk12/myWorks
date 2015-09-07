@@ -3,7 +3,7 @@ package leetCode;
 public class largestSquareOfOnes {
 	static int[][] memo = null;
 	public static void main(String[] args) {
-		char[][] input = {{}};//{{0,1,1},{0,1,1},{0,0,0}};//{{0,1,1,0},{0,1,1,0},{0,0,0,0},{0,0,0,0}};//
+		char[][] input = {{0,1,1},{0,1,1},{0,0,0}};//{{0,1,1,0},{0,1,1,0},{0,0,0,0},{0,0,0,0}};//{{1,0,1,0,0},{1,0,1,1,1}};
 		if(input == null || input.length == 0){
             System.out.println(0);
         	return;

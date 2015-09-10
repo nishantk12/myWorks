@@ -1,30 +1,27 @@
 package RandomQuestions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FirstNonDuplicate {
 	public static void main(String[] args) {
-		String s = "abcac";
+		String s = "abcdeac";
 		System.out.println(firstNonDupIndex(s));
 	}
 
 	private static int firstNonDupIndex(String s) {
 		char[] sChar = s.toCharArray();
-		int indexPointer = 0;
-		List<Integer> indexes = new ArrayList<Integer>();
-		List<Integer> removedIndexes = new ArrayList<Integer>();
-		Map<Character,Integer> check = new HashMap<Character,Integer>();
+		Map<Character,Integer> uniqueChars = new LinkedHashMap<Character,Integer>();
+		Map<Character,Integer> repeatedChars = new HashMap<Character,Integer>();
 		for(int i=0;i<sChar.length;i++){
-			if(check.remove(sChar[i])==null){
-				check.put(sChar[i],i);
-				indexes.add(i);
-			}else{
-				indexPointer++;
+			if(!uniqueChars.containsKey(sChar[i]) && !repeatedChars.containsKey(sChar[i])){
+				uniqueChars.put(sChar[i], i);
+			}else if(uniqueChars.containsKey(sChar[i])){
+				uniqueChars.remove(sChar[i]);
+				repeatedChars.put(sChar[i],1);
 			}
 		}
-		return indexes.get(indexPointer);
+		return uniqueChars.get(uniqueChars.keySet().iterator().next()) ;
 	}
 }

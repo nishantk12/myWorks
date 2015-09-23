@@ -7,7 +7,7 @@ public class NQueen {
 	static List<List<String>> sols = new ArrayList<List<String>>();
 	
 	public static void main(String[] args) {
-		solveNQueens(3);
+		solveNQueens(6);
 		System.out.println(sols.size());
 	}
 	
@@ -29,6 +29,7 @@ public class NQueen {
                 arr[i][col] = true;
                 if(isSolution(arr,col+1)){
                     addSolution(arr);
+                    arr[i][col] = false;
                 }else{
                     arr[i][col] = false;
                 }
@@ -38,21 +39,19 @@ public class NQueen {
     }
     
     public static boolean isSafe(boolean[][] arr, int row, int col){
-    	System.out.println(row+";"+col);
-    	System.out.println("of"+arr[1][0]);
+    	//System.out.println(row+";"+col);
+    	//System.out.println("arr[2][1]:"+arr[2][1]);
         int diff = col;
         int n = arr.length;
         for(int i=0;i<arr.length;i++){
             if(arr[row][i] == true || arr[i][col] == true){
                 return false;
             }
-           
-            if((row + i - diff) < n && (row + i - diff) >= 0 && arr[i][row +i-diff] == true){
-            	 //System.out.println("test" + arr[i][row +i-diff]);
-                return false;
-            } 
-            if((row + diff - i) < n && (row + diff - i) >= 0 &&  arr[i][row -i + diff] == true){
-                return false;
+            if((row - n/2 + i) >= 0 && (row - n/2 + i) < n && (col - n/2 + i) >= 0 && (col - n/2 + i) < n){
+            	if(arr[row-n/2+i][col - n/2 + i]==true) return false;
+            }
+            if((row + n/2 - i) >= 0 && (row + n/2 - i) < n && (col - n/2 + i) >= 0 && (col - n/2 + i) < n){
+            	if(arr[row+n/2-i][col - n/2 + i]==true) return false;
             }
         }
         return true;

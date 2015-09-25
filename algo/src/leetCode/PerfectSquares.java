@@ -1,9 +1,10 @@
 package leetCode;
 
 public class PerfectSquares {
+	static int min = Integer.MAX_VALUE;
 	public static void main(String[] args) {
-		int num = calculateCount(43,'s');
-		System.out.println(num);
+		calculateCount(43,0);
+		System.out.println(min);
 	}
 
 	private static int findMaxNumber(int num) {
@@ -21,6 +22,37 @@ public class PerfectSquares {
 			}
 		}
 		return start;
+	}
+	
+	
+	static void calculateCount(int num, int count){
+		if(num == 0){
+			if(count < min) min = count;
+		}else{
+			int max = findMaxNumber(num);
+			for(int i=1;i<=max;i++){
+				System.out.println("i"+i);
+				int temp = num;
+				int max_temp = max;
+				while(max_temp > i){
+					temp = temp - (int)Math.pow(i,2);
+					max_temp = findMaxNumber(temp);
+					count += 1;
+				}
+				if(temp - (int)Math.pow(max_temp, 2) == 0){
+					count += 1;
+					System.out.println(i+";"+count);
+					if(count < min) min = count;
+				}else{
+					System.out.println("inside else" + temp);
+					calculateCount(temp,count);
+				}
+				System.out.println("count0");
+				count = 0;
+			}
+		}
+		System.out.println("returning " + min);
+		//return min;
 	}
 	
 	static int calculateCount(int num,char this_is_just_to_overload){
@@ -79,7 +111,7 @@ public class PerfectSquares {
 		return count;
 	}
 	
-	static int calculateCount(int num,int count){
+	/*static int calculateCount(int num,int count){
 		if(num == 0) return count + 0;
 		else{
 			int max = findMaxNumber(num);
@@ -92,6 +124,6 @@ public class PerfectSquares {
 				return Math.min(calculateCount(num-(int)Math.pow(max-1,2),count+1),calculateCount(num-(int)Math.pow(max-2,2),count+1));
 			}
 		}
-	}
+	}*/
 	
 }
